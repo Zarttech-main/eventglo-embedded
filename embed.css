@@ -1,0 +1,276 @@
+#eventglo_wrapper {
+    margin-top: 20px;
+    padding-top: 30px;
+    font-family: 'Jost', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.events_wrapper {
+    display: flex;
+    flex-direction: row;
+    row-gap: 20px;
+}
+.s-cardtext {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 10px;
+    line-height: 20px;
+    letter-spacing: 0.001em;
+    color: #515151;
+    position: relative;
+}
+
+.s-cardtitle {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    /* identical to box height, or 167% */
+
+    letter-spacing: 0.001em;
+
+    /* Colour/White Neutral/10 */
+
+    color: #303030;
+}
+
+.card-title {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 20px;
+    /* identical to box height, or 167% */
+
+    letter-spacing: 0.001em;
+
+    /* Colour/White Neutral/10 */
+
+    color: #303030;
+}
+
+.tag {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 20px;
+    gap: 10px;
+    color: #ffffff;
+    position: absolute;
+    font-size: 12px;
+    font-weight: normal;
+    right: 0;
+    top: 1px;
+    background: #0E8D45;
+}
+
+.card-text-title {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 20px;
+    /* identical to box height, or 167% */
+
+    letter-spacing: 0.001em;
+
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.outline-button-black {
+    margin: 1rem 0;
+    padding: .75rem 1rem;
+    color: #000000;
+    border: 1px solid #000000;
+    background-color: #ffffff;
+    border-radius: 30px;
+  
+}
+.outline-button-black:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.s-date {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 10px;
+    line-height: 20px;
+    /* identical to box height, or 200% */
+
+    letter-spacing: 0.001em;
+
+    /* Colour/White Neutral/10 */
+
+    color: #303030;
+}
+
+.s-btn {
+    background-color: #D8DCFD;
+    color: #3209D7;
+    font-weight: 300;
+    font-size: 10px;
+    line-height: 20px;
+    width: 110px;
+    height: 32px;
+    border-radius: 8px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.s-card {
+    width: max-content;
+    height: auto;
+    /* // height: 252px; */
+
+    background: #FFFFFF;
+    /* bold shadow */
+
+    box-shadow: 0px 2px 10px rgba(0, 140, 254, 0.1);
+    border-radius: 12px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.s-see {
+    margin-right: 15px; width: 45px; margin-top: 4px; font-family: 'Jost';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 20px;
+
+    /* Colour/White Neutral/10 */
+
+    color: #303030;
+}
+
+
+/* // .mat-mdc-tab .mdc-tab__content {
+//   position: relative;
+//   pointer-events: auto;
+//   font-family: 'Jost';
+//   font-size: 30px;
+// }
+
+// .mat-mdc-tab .mdc-tab__text-label {
+//   display: inline-flex;
+//   align-items: center;
+//   font-family: 'Jost';
+//   font-size: 30px;
+
+// } */
+
+.eventglo__input {
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px auto;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.eventglo__submit-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 11px 16px;
+    gap: 10px;
+    width: 100%;
+    width: 294px;
+    height: 40px;
+    color: #fff;
+    border: 1px solid #2907B0;
+    background: #2907B0;
+    border-radius: 4px;
+
+}
+.eventglo__submit-btn:hover {
+    color: #2907B0;
+    border: 1px solid #2907B0;
+    background: #ffffff;
+    transition: transform 0.3s ease;
+}
+
+
+.eventglo__modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .eventglo__modal-content {
+    border-radius: 20px;
+    padding: 20px 40px;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+  
+  /* The Close Button */
+  .eventglo__close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .eventglo__close:hover,
+  .eventglo__close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.item-card {
+    transition: 0.5s;
+    cursor: pointer;
+    border-radius: 19px;
+    min-height: 319px;
+    margin: .5rem;
+    width: 300px;
+  }
+  
+  .item-card-new {
+    /* // transition:0.5s; */
+    cursor: pointer;
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    background: #F5F7FF;
+  }
+  
+  .item-card-add {
+    border-radius: 10px;
+    width: 400px;
+    height: auto;
+    background: #F5F7FF;
+  }
+  
+  .item-card-title {
+    font-size: 15px;
+    transition: 1s;
+    cursor: pointer;
+  }
+  
+  .item-card-title i {
+    font-size: 15px;
+    transition: 1s;
+    cursor: pointer;
+    color: #ffa710
+  }
+
