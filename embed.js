@@ -327,8 +327,10 @@ const EventGloEmbed = (() => {
     document
       .querySelector('#eventglo-next-btn')
       .addEventListener('click', (event) => {
-        if (pager.items.length === pager.totalSize) return;
-        loadEvents(pager.page + 1);
+        const page = pager.page + 1;
+        const totalPages = Math.ceil(pager.totalSize / pager.pageSize);
+        if (page > totalPages) return;
+        loadEvents(page);
         window.scroll({ top: 0, behavior: 'smooth' });
       });
   }
