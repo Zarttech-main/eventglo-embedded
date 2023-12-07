@@ -5,7 +5,9 @@ const EventGloEmbed = (() => {
   let template;
   /** @type {HTMLElement} */
   let parentElement;
+  let containerElement;
   let loaderState;
+  let loadingData;
   const pager = {
     page: 0,
     pageSize: 12,
@@ -14,7 +16,7 @@ const EventGloEmbed = (() => {
   };
   const BASE_URL = 'https://app.eventglo.io';
   const API_URL = 'https://api.eventglo.io/api/Event';
-  const styles = `.eventglo-embed-container{width:100%;max-width:1200px;margin:0 auto;position:relative}.eventglo-embed{line-height:20px;font-weight:400;font-size:15px;display:flex;flex-wrap:wrap;width:100%;min-height:24em}.eventglo-embed *{box-sizing:border-box}.eventglo-embed>*{max-width:100%;padding:0 .75rem;flex:0 0 auto;width:100%;margin-bottom:1rem}@media screen and (min-width:576px){.eventglo-embed>*{flex:0 0 auto;width:50%}}@media screen and (min-width:768px){.eventglo-embed>*{flex:0 0 auto;width:33.3333%}}@media screen and (min-width:1200px){.eventglo-embed>*{flex:0 0 auto;width:25%}}.eventglo-embed .embed-card{display:flex;flex-direction:column;background-clip:border-box;word-wrap:break-ord;font-family:Roboto,Verdana,sans-serif;border:0;border-radius:0;box-shadow:0 2px 10px 0 #008cfe1a;min-height:24em;position:relative;width:100%}.eventglo-embed .embed-card *{margin:0;padding:0;box-sizing:border-box}.eventglo-embed .embed-card .card-body{flex:1 1 auto;padding:1rem}.eventglo-embed .embed-card img{max-width:100%}.eventglo-embed .embed-card .card-img,.eventglo-embed .embed-card .card-img-bottom,.eventglo-embed .embed-card .card-img-top{border-radius:0}.eventglo-embed .embed-card .content-details{max-width:85%}.eventglo-embed .embed-card>.card-title{padding:1rem}.eventglo-embed .embed-card>.card-title,.eventglo-embed .embed-card>.card-title h1,.eventglo-embed .embed-card>.card-title p{margin-bottom:0}.eventglo-embed .embed-card .content{width:100%;display:flex;justify-content:space-between}.eventglo-embed .embed-card .content+.cta-embed-pane{padding-top:.75rem}.eventglo-embed .embed-card .content-title{font-size:1rem;font-weight:700;margin-bottom:.5rem;text-transform:capitalize}.eventglo-embed .content small,.eventglo-embed .embed-card .content-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}.eventglo-embed .embed-card>.content-title{padding:1rem 1rem 0 1rem}.eventglo-embed .embed-card .content-subtitle{font-size:.8rem;font-weight:400;margin-bottom:1rem}.eventglo-embed .embed-card .content-details .content-label{display:flex;align-items:center;max-width:100%;overflow:hidden}.eventglo-embed .embed-card .content-details .content-label:not(:last-child){margin-bottom:.75rem}.eventglo-embed .embed-card .content-details .content-label img,.eventglo-embed .embed-card .content-details .content-label svg{width:12px;margin-right:.5rem}.eventglo-embed .embed-card .content-details .content-label small{font-size:.75rem}.eventglo-embed .embed-card .content-date{font-size:1.5rem;font-weight:700;align-self:center}.eventglo-embed .embed-card .content-date p:first-child{font-size:1.25rem;font-weight:400}.eventglo-embed .embed-card .content-date *{margin-top:0;margin-bottom:10px}.eventglo-embed .embed-card .cta-embed-pane{text-align:center}.eventglo-embed .embed-card .cta-embed-pane .embed-cta-btn{display:inline-block;width:100%;max-width:80%;border:1px solid var(--brand-color);border-radius:8px;color:var(--brand-color);background-color:#fff;cursor:pointer;padding:.35rem .75rem;text-decoration:none;font-size:1rem;transition:transform .3s ease-in-out}.eventglo-embed .embed-card .cta-embed-pane .embed-cta-btn:hover{transform:translateY(-1px)}.eventglo-embed .embed-card .cta-embed-pane .embed-cta-btn span{font-weight:500}.eventglo-embed .embed-card .content-image{width:8em;max-width:8em;height:10em;margin-right:.5rem;border-radius:8px;overflow:hidden}.eventglo-embed .embed-card .content-image img{width:100%;height:100%;border-radius:8px;object-fit:cover}.eventglo-embed .embed-card .two-line-overflow-ellipsis{overflow:hidden;text-overflow:ellipsis;display:-webkit-box;line-clamp:2;-webkit-line-clamp:2;-webkit-box-orient:vertical;min-height:calc(2rem + 5px)}.eventglo-embed .embed-card .card-body>.content-subtitle{margin-bottom:.5rem}.eventglo-embed .embed-card>.cta-embed-pane{align-self:flex-end;width:100%;padding:0 1rem 1rem 1rem}.eventglo-embed .embed-card .card-img,.eventglo-embed .embed-card .card-img-bottom,.eventglo-embed .embed-card .card-img-top{border-radius:0!important;height:10em;overflow:hidden;max-width:100%}.eventglo-embed .embed-card .card-img img,.eventglo-embed .embed-card .card-img-bottom img,.eventglo-embed .embed-card .card-img-top img{width:100%;height:100%;object-fit:cover;object-position:center}.eventglo-embed-container #eventglo-loader{position:absolute;left:0;right:0;top:0;bottom:0;background-color:rgba(255,255,255,.8);justify-content:center;align-items:center;width:100%;z-index:600;display:none}.eventglo-embed-container #eventglo-loader.show{display:flex}.eventglo-embed-container #eventglo-loader span{display:inline-block;font-family:Roboto,Verdana,san-serif;font-weight:700;font-size:1rem;color:#303030}.eventglo-embed .tag{color:#fff;position:absolute;font-size:12px;font-weight:400;right:0;top:1px;display:inline-block;padding:2px 10px 2px 22px!important;border-top-left-radius:20px;border-bottom-left-radius:20px;background-color:red}.eventglo-embed .tag::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;border:1px sold #fff;background-color:#fff;position:absolute;left:10px;top:50%;transform:translateY(-50%)}`;
+  const styles = `.eventglo-embed-container{width:100%;max-width:1200px;margin:0 auto;position:relative}.eventglo-embed{line-height:20px;font-weight:400;font-size:15px;display:flex;flex-wrap:wrap;width:100%;min-height:24em}.eventglo-embed *{box-sizing:border-box}.eventglo-embed>*{max-width:100%;padding:0 .75rem;flex:0 0 auto;width:100%;margin-bottom:1rem}@media screen and (min-width:576px){.eventglo-embed>*{flex:0 0 auto;width:50%}}@media screen and (min-width:768px){.eventglo-embed>*{flex:0 0 auto;width:33.3333%}}@media screen and (min-width:1200px){.eventglo-embed>*{flex:0 0 auto;width:25%}}.eventglo-embed .embed-card{display:flex;flex-direction:column;background-clip:border-box;word-wrap:break-ord;font-family:Roboto,Verdana,sans-serif;border:0;border-radius:0;box-shadow:0 2px 10px 0 #008cfe1a;min-height:24em;position:relative;width:100%}.eventglo-embed .embed-card *{margin:0;padding:0;box-sizing:border-box}.eventglo-embed .embed-card .card-body{flex:1 1 auto;padding:1rem}.eventglo-embed .embed-card img{max-width:100%}.eventglo-embed .embed-card .card-img,.eventglo-embed .embed-card .card-img-bottom,.eventglo-embed .embed-card .card-img-top{border-radius:0}.eventglo-embed .embed-card .content-details{max-width:85%}.eventglo-embed .embed-card>.card-title{padding:1rem}.eventglo-embed .embed-card>.card-title,.eventglo-embed .embed-card>.card-title h1,.eventglo-embed .embed-card>.card-title p{margin-bottom:0}.eventglo-embed .embed-card .content{width:100%;display:flex;justify-content:space-between}.eventglo-embed .embed-card .content+.cta-embed-pane{padding-top:.75rem}.eventglo-embed .embed-card .content-title{font-size:1rem;font-weight:700;margin-bottom:.5rem;text-transform:capitalize}.eventglo-embed .content small,.eventglo-embed .embed-card .content-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}.eventglo-embed .embed-card>.content-title{padding:1rem 1rem 0 1rem}.eventglo-embed .embed-card .content-subtitle{font-size:.8rem;font-weight:400;margin-bottom:1rem}.eventglo-embed .embed-card .content-details .content-label{display:flex;align-items:center;max-width:100%;overflow:hidden}.eventglo-embed .embed-card .content-details .content-label:not(:last-child){margin-bottom:.75rem}.eventglo-embed .embed-card .content-details .content-label img,.eventglo-embed .embed-card .content-details .content-label svg{width:12px;margin-right:.5rem}.eventglo-embed .embed-card .content-details .content-label small{font-size:.75rem}.eventglo-embed .embed-card .content-date{font-size:1.5rem;font-weight:700;align-self:center}.eventglo-embed .embed-card .content-date p:first-child{font-size:1.25rem;font-weight:400}.eventglo-embed .embed-card .content-date *{margin-top:0;margin-bottom:10px}.eventglo-embed .embed-card .cta-embed-pane{text-align:center}.eventglo-embed .embed-card .cta-embed-pane .embed-cta-btn{display:inline-block;width:100%;max-width:80%;border:1px solid var(--brand-color);border-radius:8px;color:var(--brand-color);background-color:#fff;cursor:pointer;padding:.35rem .75rem;text-decoration:none;font-size:1rem;transition:transform .3s ease-in-out}.eventglo-embed .embed-card .cta-embed-pane .embed-cta-btn:hover{transform:translateY(-1px)}.eventglo-embed .embed-card .cta-embed-pane .embed-cta-btn span{font-weight:500}.eventglo-embed .embed-card .content-image{width:8em;max-width:8em;height:10em;margin-right:.5rem;border-radius:8px;overflow:hidden}.eventglo-embed .embed-card .content-image img{width:100%;height:100%;border-radius:8px;object-fit:cover}.eventglo-embed .embed-card .two-line-overflow-ellipsis{overflow:hidden;text-overflow:ellipsis;display:-webkit-box;line-clamp:2;-webkit-line-clamp:2;-webkit-box-orient:vertical;min-height:calc(2rem + 5px)}.eventglo-embed .embed-card .card-body>.content-subtitle{margin-bottom:.5rem}.eventglo-embed .embed-card>.cta-embed-pane{align-self:flex-end;width:100%;padding:0 1rem 1rem 1rem}.eventglo-embed .embed-card .card-img,.eventglo-embed .embed-card .card-img-bottom,.eventglo-embed .embed-card .card-img-top{border-radius:0!important;height:10em;overflow:hidden;max-width:100%}.eventglo-embed .embed-card .card-img img,.eventglo-embed .embed-card .card-img-bottom img,.eventglo-embed .embed-card .card-img-top img{width:100%;height:100%;object-fit:cover;object-position:center}.eventglo-embed-container #eventglo-loader{position:absolute;left:0;right:0;top:0;bottom:0;background-color:rgba(255,255,255,.8);justify-content:center;align-items:center;width:100%;z-index:600;display:none}.eventglo-embed-container #eventglo-loader.show{display:flex}.eventglo-embed-container #eventglo-loader span{display:inline-block;font-family:Roboto,Verdana,san-serif;font-weight:700;font-size:1rem;color:#303030}.eventglo-embed .tag{color:#fff;position:absolute;font-size:12px;font-weight:400;right:0;top:1px;display:inline-block;padding:2px 10px 2px 22px!important;border-top-left-radius:20px;border-bottom-left-radius:20px;background-color:red}.eventglo-embed .tag::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;border:1px sold #fff;background-color:#fff;position:absolute;left:10px;top:50%;transform:translateY(-50%)}.eventglo-paginator{display:flex; width: 15em;margin: 0 auto; justify-content: space-between; align-items: center; background-color: #fafafa; border-radius: 20px; font-family: verdana, sans-serif;} .eventglo-paginator *{ padding: 3px 5px;} .eventglo-paginator button{background-color:transparent;border:0;cursor: pointer;}.eventglo-paginator button svg{width:2rem} .eventglo-paginator button#eventglo-prev-btn{border-right: 1px solid #ddd} .eventglo-paginator button#eventglo-next-btn{border-left: 1px solid #ddd}`;
   const icons = {
     location: `<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M10.0799 7.37334C10.0799 8.52 9.15326 9.45334 7.99992 9.45334C6.84659 9.45334 5.91992 8.52667 5.91992 7.37334C5.91992 6.22 6.85326 5.29333 7.99992 5.29333C8.22659 5.29333 8.44659 5.32667 8.64659 5.39334" stroke="#292D32" stroke-linecap="round" stroke-linejoin="round"/>
@@ -26,6 +28,8 @@ const EventGloEmbed = (() => {
     <path d="M3.33366 5.83333C2.60033 6.80667 2.16699 8.02 2.16699 9.33333C2.16699 12.5533 4.78033 15.1667 8.00033 15.1667C11.2203 15.1667 13.8337 12.5533 13.8337 9.33333C13.8337 6.11333 11.2203 3.5 8.00033 3.5C7.16033 3.5 6.36699 3.67333 5.64699 3.99333" stroke="#292D32" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
+    chevronRight: `<?xml version="1.0" encoding="utf-8"?><svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 6L15 12L9 18" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    chevronLeft: `<?xml version="1.0" encoding="utf-8"?><svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 6L9 12L15 18" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   };
   const templates = {
     0: (eventData) => {
@@ -52,7 +56,9 @@ const EventGloEmbed = (() => {
         startDate.getDate()
       )}</p></div></div></div><div class="cta-embed-pane"> <a href="${BASE_URL}/auth/events/${
         eventData.eventId
-      }" target="_blank" class="embed-cta-btn"><span>Register Now</span></a></div></div>`;
+      }" target="_blank" class="embed-cta-btn"><span>${
+        eventData.isSoldout ? 'Join Wait List' : 'Register Now'
+      }</span></a></div></div>`;
     },
     1: (eventData) => {
       const startDate = new Date(eventData.startDate);
@@ -152,7 +158,7 @@ const EventGloEmbed = (() => {
    */
   async function getAllEventsByPublisherId(publisherId) {
     const response = await fetch(
-      `${API_URL}/GetAllEventByUserId?userId=${publisherId}&page=${pager.page}&pagesize=${pager.pageSize}`,
+      `${API_URL}/GetAllEventByUserId?userId=${publisherId}&pagenumber=${pager.page}&pagesize=${pager.pageSize}&isPublished=true`,
       {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
@@ -236,11 +242,11 @@ const EventGloEmbed = (() => {
 
   function loading(show = true) {
     const id = 'eventglo-loader';
-    let loader = parentElement.querySelector(`#${id}`);
+    let loader = containerElement.querySelector(`#${id}`);
     if (!loader) {
       loader = document.createElement('div');
       loader.id = id;
-      parentElement.appendChild(loader);
+      containerElement.appendChild(loader);
     }
     clearLoaderState();
     if (show) {
@@ -256,20 +262,75 @@ const EventGloEmbed = (() => {
     }
   }
 
-  async function loadEvents() {
-    pager.page += 1;
+  function injectPaginator() {
+    const element = document.createElement('div');
+    element.classList.add('eventglo-paginator');
+    element.innerHTML = `<button id="eventglo-prev-btn">${icons.chevronLeft}</button>
+    <div id="eventglo-current-page">Page 1</div>
+    <button id="eventglo-next-btn">${icons.chevronRight}</button>`;
+    containerElement.appendChild(element);
+  }
+
+  function renderEvents(items) {
+    parentElement.innerHTML = '';
+    items.forEach((eventData) => {
+      renderTemplate(parentElement, templates[template](eventData), ['']);
+    });
+    document.querySelector(
+      '#eventglo-current-page'
+    ).innerHTML = `Page ${pager.page}`;
+  }
+
+  async function loadEvents(page = 1) {
+    if (loadingData) return;
+    const startIndex = (page - 1) * pager.pageSize;
+    const endIndex = page * pager.pageSize;
+    const events = pager.items.slice(startIndex, endIndex);
+    pager.page = page;
+
+    if (events.length > 0) {
+      renderEvents(events);
+      return;
+    }
+
     loading();
+    loadingData = true;
     const response = await getAllEventsByPublisherId(publisherId);
     loading(false);
+    loadingData = false;
     if (response.data) {
-      pager.page = response.data.page;
+      pager.page = response.data.pageNumber;
       pager.pageSize = response.data.pageSize;
       pager.totalSize = response.data.totalSize;
       pager.items.push(...response.data.items);
-      response.data.items.forEach((eventData) => {
-        renderTemplate(parentElement, templates[template](eventData), ['']);
-      });
+      renderEvents(response.data.items);
+
+      // .forEach((eventData) => {
+      //   renderTemplate(parentElement, templates[template](eventData), ['']);
+      // });
+      // document.querySelector(
+      //   '#eventglo-current-page'
+      // ).innerHTML = `Page ${pager.page}`;
     }
+  }
+
+  function registerEventHandlers() {
+    document
+      .querySelector('#eventglo-prev-btn')
+      .addEventListener('click', (event) => {
+        const page = pager.page - 1;
+        if (page <= 0) return;
+        loadEvents(page);
+        window.scroll({ top: 0, behavior: 'smooth' });
+      });
+
+    document
+      .querySelector('#eventglo-next-btn')
+      .addEventListener('click', (event) => {
+        if (pager.items.length === pager.totalSize) return;
+        loadEvents(pager.page + 1);
+        window.scroll({ top: 0, behavior: 'smooth' });
+      });
   }
 
   /**
@@ -277,6 +338,7 @@ const EventGloEmbed = (() => {
    */
   async function init() {
     parentElement = document.querySelector('.eventglo-embed');
+    containerElement = document.querySelector('.eventglo-embed-container');
     if (parentElement) {
       const brandColor = parentElement.dataset.brandColor || '#000000';
       publisherId = parentElement.dataset.publisherId;
@@ -285,6 +347,9 @@ const EventGloEmbed = (() => {
       parentElement.setAttribute('style', `--brand-color: ${brandColor}`);
       injectStyle();
       loadEvents();
+
+      injectPaginator();
+      registerEventHandlers();
     }
   }
 

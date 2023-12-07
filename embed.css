@@ -1,7 +1,7 @@
 .eventglo-embed-container {
   width: 100%;
   max-width: 1200px;
-  margin: 0px auto;
+  margin: 0 auto;
   position: relative;
 }
 .eventglo-embed {
@@ -49,7 +49,7 @@
   font-family: Roboto, Verdana, sans-serif;
   border: 0;
   border-radius: 0;
-  box-shadow: 0px 2px 10px 0px #008cfe1a;
+  box-shadow: 0 2px 10px 0 #008cfe1a;
   min-height: 24em;
   position: relative;
   width: 100%;
@@ -66,9 +66,9 @@
 .eventglo-embed .embed-card img {
   max-width: 100%;
 }
-.eventglo-embed .embed-card .card-img-top,
+.eventglo-embed .embed-card .card-img,
 .eventglo-embed .embed-card .card-img-bottom,
-.eventglo-embed .embed-card .card-img {
+.eventglo-embed .embed-card .card-img-top {
   border-radius: 0;
 }
 .eventglo-embed .embed-card .content-details {
@@ -96,8 +96,8 @@
   margin-bottom: 0.5rem;
   text-transform: capitalize;
 }
-.eventglo-embed .embed-card .content-title,
-.eventglo-embed .content small {
+.eventglo-embed .content small,
+.eventglo-embed .embed-card .content-title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -120,8 +120,8 @@
 .eventglo-embed .embed-card .content-details .content-label:not(:last-child) {
   margin-bottom: 0.75rem;
 }
-.eventglo-embed .embed-card .content-details .content-label svg,
-.eventglo-embed .embed-card .content-details .content-label img {
+.eventglo-embed .embed-card .content-details .content-label img,
+.eventglo-embed .embed-card .content-details .content-label svg {
   width: 12px;
   margin-right: 0.5rem;
 }
@@ -195,17 +195,17 @@
   width: 100%;
   padding: 0 1rem 1rem 1rem;
 }
-.eventglo-embed .embed-card .card-img-top,
+.eventglo-embed .embed-card .card-img,
 .eventglo-embed .embed-card .card-img-bottom,
-.eventglo-embed .embed-card .card-img {
-  border-radius: 0px !important;
+.eventglo-embed .embed-card .card-img-top {
+  border-radius: 0 !important;
   height: 10em;
   overflow: hidden;
   max-width: 100%;
 }
-.eventglo-embed .embed-card .card-img-top img,
+.eventglo-embed .embed-card .card-img img,
 .eventglo-embed .embed-card .card-img-bottom img,
-.eventglo-embed .embed-card .card-img img {
+.eventglo-embed .embed-card .card-img-top img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -235,10 +235,10 @@
   color: #303030;
 }
 .eventglo-embed .tag {
-  color: #ffffff;
+  color: #fff;
   position: absolute;
   font-size: 12px;
-  font-weight: normal;
+  font-weight: 400;
   right: 0;
   top: 1px;
   display: inline-block;
@@ -259,4 +259,31 @@
   left: 10px;
   top: 50%;
   transform: translateY(-50%);
+}
+.eventglo-paginator {
+  display: flex;
+  width: 15em;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fafafa;
+  border-radius: 20px;
+  font-family: verdana, sans-serif;
+}
+.eventglo-paginator * {
+  padding: 3px 5px;
+}
+.eventglo-paginator button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.eventglo-paginator button svg {
+  width: 2rem;
+}
+.eventglo-paginator button#eventglo-prev-btn {
+  border-right: 1px solid #ddd;
+}
+.eventglo-paginator button#eventglo-next-btn {
+  border-left: 1px solid #ddd;
 }
