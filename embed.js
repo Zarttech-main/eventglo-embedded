@@ -82,7 +82,9 @@ const EventGloEmbed = (() => {
         startDate.getDate()
       )}</p></div> </div> <div class="cta-embed-pane"> <a href="${BASE_URL}/auth/events/${
         eventData.eventId
-      }" target="_blank" class="embed-cta-btn"> <span>Register Now</span> </a> </div> </div> <div class="card-img-bottom"> <img src="${
+      }" target="_blank" class="embed-cta-btn"> <span>${
+        eventData.isSoldout ? 'Join Wait List' : 'Register Now'
+      }</span> </a> </div> </div> <div class="card-img-bottom"> <img src="${
         eventData.media
       }" alt="Event poster" /></div></div>`;
     },
@@ -108,7 +110,9 @@ const EventGloEmbed = (() => {
         startDate.getDate()
       )}</p></div></div></div><div class="cta-embed-pane"> <a href="${BASE_URL}/auth/events/${
         eventData.eventId
-      }" target="_blank" class="embed-cta-btn"> <span>Register Now</span></a></div></div>`;
+      }" target="_blank" class="embed-cta-btn"> <span>${
+        eventData.isSoldout ? 'Join Wait List' : 'Register Now'
+      }</span></a></div></div>`;
     },
     3: (eventData) => {
       const startDate = new Date(eventData.startDate);
@@ -134,7 +138,9 @@ const EventGloEmbed = (() => {
         startDate.getDate()
       )}</p></div></div></div> <div class="cta-embed-pane"> <a href="${BASE_URL}/auth/events/${
         eventData.eventId
-      }" target="_blank" class="embed-cta-btn"> <span>Register Now</span> </a> </div> </div>`;
+      }" target="_blank" class="embed-cta-btn"> <span>${
+        eventData.isSoldout ? 'Join Wait List' : 'Register Now'
+      }</span> </a> </div> </div>`;
     },
   };
   const months = [
