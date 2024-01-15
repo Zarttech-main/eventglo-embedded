@@ -16,7 +16,7 @@ const EventGloEmbed = (() => {
   };
   const BASE_URL = 'https://eventglo-fe.onrender.com';
   const API_URL = 'https://eventglo-be.onrender.com/api/Event';
-  const styles = `.eventglo-embed-container{width:100%;max-width:1200px;margin:0 auto;position:relative}.eventglo-embed{line-height:20px;font-weight:400;font-size:15px;display:flex;flex-wrap:wrap;width:100%;min-height:24em}.eventglo-embed *{box-sizing:border-box}.eventglo-embed>*{max-width:100%;padding:0 .75rem;flex:0 0 auto;width:100%;margin-bottom:1rem}@media screen and (min-width:576px){.eventglo-embed>*{flex:0 0 auto;width:50%}}@media screen and (min-width:768px){.eventglo-embed>*{flex:0 0 auto;width:33.3333%}}@media screen and (min-width:1200px){.eventglo-embed>*{flex:0 0 auto;width:25%}}.eventglo-embed .embed-card{display:flex;flex-direction:column;background-clip:border-box;word-wrap:break-ord;font-family:Roboto,Verdana,sans-serif;border:0;border-radius:0;box-shadow:0 2px 10px 0 #008cfe1a;min-height:24em;position:relative;width:100%}.eventglo-embed .embed-card *{margin:0;padding:0;box-sizing:border-box}.eventglo-embed .embed-card .card-body{flex:1 1 auto;padding:1rem}.eventglo-embed .embed-card img{max-width:100%}.eventglo-embed .embed-card .card-img,.eventglo-embed .embed-card .card-img-bottom,.eventglo-embed .embed-card .card-img-top{border-radius:0}.eventglo-embed .embed-card .content-details{max-width:85%}.eventglo-embed .embed-card>.card-title{padding:1rem}.eventglo-embed .embed-card>.card-title,.eventglo-embed .embed-card>.card-title h1,.eventglo-embed .embed-card>.card-title p{margin-bottom:0}.eventglo-embed .embed-card .content{width:100%;display:flex;justify-content:space-between}.eventglo-embed .embed-card .content+.cta-embed-pane{padding-top:.75rem}.eventglo-embed .embed-card .content-title{font-size:1rem;font-weight:700;margin-bottom:.5rem;text-transform:capitalize}.eventglo-embed .content small,.eventglo-embed .embed-card .content-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}.eventglo-embed .embed-card>.content-title{padding:1rem 1rem 0 1rem}.eventglo-embed .embed-card .content-subtitle{font-size:.8rem;font-weight:400;margin-bottom:1rem}.eventglo-embed .embed-card .content-details .content-label{display:flex;align-items:center;max-width:100%;overflow:hidden}.eventglo-embed .embed-card .content-details .content-label:not(:last-child){margin-bottom:.75rem}.eventglo-embed .embed-card .content-details .content-label img,.eventglo-embed .embed-card .content-details .content-label svg{width:12px;margin-right:.5rem}.eventglo-embed .embed-card .content-details .content-label small{font-size:.75rem}.eventglo-embed .embed-card .content-date{font-size:1.5rem;font-weight:700;align-self:center}.eventglo-embed .embed-card .content-date p:first-child{font-size:1.25rem;font-weight:400}.eventglo-embed .embed-card .content-date *{margin-top:0;margin-bottom:10px}.eventglo-embed .embed-card .cta-embed-pane{text-align:center}.eventglo-embed .embed-card .cta-embed-pane .embed-cta-btn{display:inline-block;width:100%;max-width:80%;border:1px solid var(--brand-color);border-radius:8px;color:var(--brand-color);background-color:#fff;cursor:pointer;padding:.35rem .75rem;text-decoration:none;font-size:1rem;transition:transform .3s ease-in-out}.eventglo-embed .embed-card .cta-embed-pane .embed-cta-btn:hover{transform:translateY(-1px)}.eventglo-embed .embed-card .cta-embed-pane .embed-cta-btn span{font-weight:500}.eventglo-embed .embed-card .content-image{width:8em;max-width:8em;height:10em;margin-right:.5rem;border-radius:8px;overflow:hidden}.eventglo-embed .embed-card .content-image img{width:100%;height:100%;border-radius:8px;object-fit:cover}.eventglo-embed .embed-card .two-line-overflow-ellipsis{overflow:hidden;text-overflow:ellipsis;display:-webkit-box;line-clamp:2;-webkit-line-clamp:2;-webkit-box-orient:vertical;min-height:calc(2rem + 5px)}.eventglo-embed .embed-card .card-body>.content-subtitle{margin-bottom:.5rem}.eventglo-embed .embed-card>.cta-embed-pane{align-self:flex-end;width:100%;padding:0 1rem 1rem 1rem}.eventglo-embed .embed-card .card-img,.eventglo-embed .embed-card .card-img-bottom,.eventglo-embed .embed-card .card-img-top{border-radius:0!important;height:10em;overflow:hidden;max-width:100%}.eventglo-embed .embed-card .card-img img,.eventglo-embed .embed-card .card-img-bottom img,.eventglo-embed .embed-card .card-img-top img{width:100%;height:100%;object-fit:cover;object-position:center}.eventglo-embed-container #eventglo-loader{position:absolute;left:0;right:0;top:0;bottom:0;background-color:rgba(255,255,255,.8);justify-content:center;align-items:center;width:100%;z-index:600;display:none}.eventglo-embed-container #eventglo-loader.show{display:flex}.eventglo-embed-container #eventglo-loader span{display:inline-block;font-family:Roboto,Verdana,san-serif;font-weight:700;font-size:1rem;color:#303030}.eventglo-embed .tag{color:#fff;position:absolute;font-size:12px;font-weight:400;right:0;top:1px;display:inline-block;padding:2px 10px 2px 22px!important;border-top-left-radius:20px;border-bottom-left-radius:20px;background-color:red}.eventglo-embed .tag::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;border:1px sold #fff;background-color:#fff;position:absolute;left:10px;top:50%;transform:translateY(-50%)}.eventglo-paginator{display:flex; width: 15em;margin: 0 auto; justify-content: space-between; align-items: center; background-color: #fafafa; border-radius: 20px; font-family: verdana, sans-serif;} .eventglo-paginator *{ padding: 3px 5px;} .eventglo-paginator button{background-color:transparent;border:0;cursor: pointer;}.eventglo-paginator button svg{width:2rem} .eventglo-paginator button#eventglo-prev-btn{border-right: 1px solid #ddd} .eventglo-paginator button#eventglo-next-btn{border-left: 1px solid #ddd}`;
+  const styles = `.eventglo-embed-container{width:100%;max-width:1200px;margin:0 auto;position:relative}.eventglo-embed{line-height:20px;font-weight:400;font-size:15px;display:flex;flex-wrap:wrap;width:100%;min-height:24em}.eventglo-embed *{box-sizing:border-box}.eventglo-embed>*{max-width:100%;padding:0 .75rem;flex:0 0 auto;width:100%;margin-bottom:1rem}@media screen and (min-width:576px){.eventglo-embed>*{flex:0 0 auto;width:50%}}@media screen and (min-width:768px){.eventglo-embed>*{flex:0 0 auto;width:33.3333%}}@media screen and (min-width:1200px){.eventglo-embed>*{flex:0 0 auto;width:25%}}.eventglo-embed .embed-card{display:flex;flex-direction:column;background-clip:border-box;word-wrap:break-ord;font-family:Roboto,Verdana,sans-serif;border:0;border-radius:0;box-shadow:0 2px 10px 0 #008cfe1a;min-height:24em;position:relative;width:100%}.eventglo-embed .embed-card *{margin:0;padding:0;box-sizing:border-box}.eventglo-embed .embed-card .card-body{flex:1 1 auto;padding:1rem}.eventglo-embed .embed-card img{max-width:100%}.eventglo-embed .embed-card .card-img,.eventglo-embed .embed-card .card-img-bottom,.eventglo-embed .embed-card .card-img-top{border-radius:0}.eventglo-embed .embed-card .content-details{max-width:85%}.eventglo-embed .embed-card>.card-title{padding:1rem}.eventglo-embed .embed-card>.card-title,.eventglo-embed .embed-card>.card-title h1,.eventglo-embed .embed-card>.card-title p{margin-bottom:0}.eventglo-embed .embed-card .content{width:100%;display:flex;justify-content:space-between}.eventglo-embed .embed-card .content+.cta-embed-pane{padding-top:.75rem}.eventglo-embed .embed-card .content-title{font-size:1rem;font-weight:700;margin-bottom:.5rem;text-transform:capitalize}.eventglo-embed .content small,.eventglo-embed .embed-card .content-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}.eventglo-embed .embed-card>.content-title{padding:1rem 1rem 0 1rem}.eventglo-embed .embed-card .content-subtitle{font-size:.8rem;font-weight:400;margin-bottom:1rem}.eventglo-embed .embed-card .content-details .content-label{display:flex;align-items:center;max-width:100%;overflow:hidden}.eventglo-embed .embed-card .content-details .content-label:not(:last-child){margin-bottom:.75rem}.eventglo-embed .embed-card .content-details .content-label img,.eventglo-embed .embed-card .content-details .content-label svg{width:12px;margin-right:.5rem}.eventglo-embed .embed-card .content-details .content-label small{font-size:.75rem}.eventglo-embed .embed-card .content-date{font-size:1.5rem;font-weight:700;align-self:center}.eventglo-embed .embed-card .content-date p:first-child{font-size:1.25rem;font-weight:400}.eventglo-embed .embed-card .content-date *{margin-top:0;margin-bottom:10px}.eventglo-embed .embed-card .cta-embed-pane{text-align:center}.eventglo-embed .embed-card .cta-embed-pane .embed-cta-btn{display:inline-block;width:100%;max-width:80%;border:1px solid var(--brand-color);border-radius:8px;color:var(--brand-color);background-color:#fff;cursor:pointer;padding:.35rem .75rem;text-decoration:none;font-size:1rem;transition:transform .3s ease-in-out}.eventglo-embed .embed-card .cta-embed-pane .embed-cta-btn[disabled]{opacity: 0.5} .eventglo-embed .embed-card .cta-embed-pane .embed-cta-btn:hover{transform:translateY(-1px)}.eventglo-embed .embed-card .cta-embed-pane .embed-cta-btn span{font-weight:500}.eventglo-embed .embed-card .content-image{width:8em;max-width:8em;height:10em;margin-right:.5rem;border-radius:8px;overflow:hidden}.eventglo-embed .embed-card .content-image img{width:100%;height:100%;border-radius:8px;object-fit:cover}.eventglo-embed .embed-card .two-line-overflow-ellipsis{overflow:hidden;text-overflow:ellipsis;display:-webkit-box;line-clamp:2;-webkit-line-clamp:2;-webkit-box-orient:vertical;min-height:calc(2rem + 5px)}.eventglo-embed .embed-card .card-body>.content-subtitle{margin-bottom:.5rem}.eventglo-embed .embed-card>.cta-embed-pane{align-self:flex-end;width:100%;padding:0 1rem 1rem 1rem}.eventglo-embed .embed-card .card-img,.eventglo-embed .embed-card .card-img-bottom,.eventglo-embed .embed-card .card-img-top{border-radius:0!important;height:10em;overflow:hidden;max-width:100%}.eventglo-embed .embed-card .card-img img,.eventglo-embed .embed-card .card-img-bottom img,.eventglo-embed .embed-card .card-img-top img{width:100%;height:100%;object-fit:cover;object-position:center}.eventglo-embed-container #eventglo-loader{position:absolute;left:0;right:0;top:0;bottom:0;background-color:rgba(255,255,255,.8);justify-content:center;align-items:center;width:100%;z-index:600;display:none}.eventglo-embed-container #eventglo-loader.show{display:flex}.eventglo-embed-container #eventglo-loader span{display:inline-block;font-family:Roboto,Verdana,san-serif;font-weight:700;font-size:1rem;color:#303030}.eventglo-embed .tag{color:#fff;position:absolute;font-size:12px;font-weight:400;right:0;top:1px;display:inline-block;padding:2px 10px 2px 22px!important;border-top-left-radius:20px;border-bottom-left-radius:20px;background-color:red}.eventglo-embed .tag::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;border:1px sold #fff;background-color:#fff;position:absolute;left:10px;top:50%;transform:translateY(-50%)}.eventglo-paginator{display:flex; width: 15em;margin: 0 auto; justify-content: space-between; align-items: center; background-color: #fafafa; border-radius: 20px; font-family: verdana, sans-serif;} .eventglo-paginator *{ padding: 3px 5px;} .eventglo-paginator button{background-color:transparent;border:0;cursor: pointer;}.eventglo-paginator button svg{width:2rem} .eventglo-paginator button#eventglo-prev-btn{border-right: 1px solid #ddd} .eventglo-paginator button#eventglo-next-btn{border-left: 1px solid #ddd}`;
   const icons = {
     location: `<svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M10.0799 7.37334C10.0799 8.52 9.15326 9.45334 7.99992 9.45334C6.84659 9.45334 5.91992 8.52667 5.91992 7.37334C5.91992 6.22 6.85326 5.29333 7.99992 5.29333C8.22659 5.29333 8.44659 5.32667 8.64659 5.39334" stroke="#292D32" stroke-linecap="round" stroke-linejoin="round"/>
@@ -57,11 +57,11 @@ const EventGloEmbed = (() => {
         months[startDate.getMonth()]
       } </p> <p>${padZero(
         startDate.getDate()
-      )}</p></div></div></div><div class="cta-embed-pane"> <a href="${BASE_URL}/auth/events/${
-        eventData.eventId
-      }" target="_blank" class="embed-cta-btn"><span>${getLabel(
+      )}</p></div></div></div><div class="cta-embed-pane"> <a href="${getRegisterEventUrl(
         eventData
-      )}</span></a></div></div>`;
+      )}" class="embed-cta-btn" ${
+        canDisable(eventData) ? 'disabled' : 'target="_blank"'
+      }><span>${getLabel(eventData)}</span></a></div></div>`;
     },
     1: (eventData) => {
       const startDate = new Date(eventData.startDate);
@@ -85,9 +85,11 @@ const EventGloEmbed = (() => {
         months[startDate.getMonth()]
       }</p><p>${padZero(
         startDate.getDate()
-      )}</p></div> </div> <div class="cta-embed-pane"> <a href="${BASE_URL}/auth/events/${
-        eventData.eventId
-      }" target="_blank" class="embed-cta-btn"> <span>${getLabel(
+      )}</p></div> </div> <div class="cta-embed-pane"> <a href="${getRegisterEventUrl(
+        eventData
+      )}" target="_blank" class="embed-cta-btn" ${
+        canDisable(eventData) ? 'disabled' : 'target="_blank"'
+      }> <span>${getLabel(
         eventData
       )}</span> </a> </div> </div> <div class="card-img-bottom"> <img src="${
         eventData.media
@@ -119,11 +121,11 @@ const EventGloEmbed = (() => {
         months[startDate.getMonth()]
       }</p><p>${padZero(
         startDate.getDate()
-      )}</p></div></div></div><div class="cta-embed-pane"> <a href="${BASE_URL}/auth/events/${
-        eventData.eventId
-      }" target="_blank" class="embed-cta-btn"> <span>${getLabel(
+      )}</p></div></div></div><div class="cta-embed-pane"> <a href="${getRegisterEventUrl(
         eventData
-      )}</span></a></div></div>`;
+      )}" target="_blank" class="embed-cta-btn" ${
+        canDisable(eventData) ? 'disabled' : 'target="_blank"'
+      }> <span>${getLabel(eventData)}</span></a></div></div>`;
     },
     3: (eventData) => {
       const startDate = new Date(eventData.startDate);
@@ -149,11 +151,11 @@ const EventGloEmbed = (() => {
         months[startDate.getMonth()]
       }</p> <p>${padZero(
         startDate.getDate()
-      )}</p></div></div></div> <div class="cta-embed-pane"> <a href="${BASE_URL}/auth/events/${
-        eventData.eventId
-      }" target="_blank" class="embed-cta-btn"> <span>${getLabel(
+      )}</p></div></div></div> <div class="cta-embed-pane"> <a href="${getRegisterEventUrl(
         eventData
-      )}</span> </a> </div> </div>`;
+      )}" target="_blank" class="embed-cta-btn" ${
+        canDisable(eventData) ? 'disabled' : 'target="_blank"'
+      }> <span>${getLabel(eventData)}</span> </a> </div> </div>`;
     },
   };
   const months = [
@@ -175,13 +177,25 @@ const EventGloEmbed = (() => {
     let label;
 
     if (eventData.isSoldout) {
-      label = 'Join Wait List';
+      label = eventData.eventSetting.isEnableWait
+        ? 'Join Wait List'
+        : 'Sold Out';
     } else if (eventData.eventType !== 0) {
       label = 'Buy Ticket';
     } else {
       label = 'Register Now';
     }
     return label;
+  }
+
+  function canDisable(eventData) {
+    return eventData.isSoldout && !eventData.eventSetting.isEnableWait;
+  }
+
+  function getRegisterEventUrl(eventData) {
+    return canDisable(eventData)
+      ? 'javascript: void(0)'
+      : `${BASE_URL}/auth/events/${eventData.eventId}`;
   }
 
   /**
@@ -297,6 +311,7 @@ const EventGloEmbed = (() => {
   function injectPaginator() {
     const element = document.createElement('div');
     element.classList.add('eventglo-paginator');
+    element.style.display = 'none';
     element.innerHTML = `<button id="eventglo-prev-btn">${icons.chevronLeft}</button>
     <div id="eventglo-current-page">Page 1</div>
     <button id="eventglo-next-btn">${icons.chevronRight}</button>`;
@@ -336,13 +351,10 @@ const EventGloEmbed = (() => {
       pager.totalSize = response.data.totalSize;
       pager.items.push(...response.data.items);
       renderEvents(response.data.items);
-
-      // .forEach((eventData) => {
-      //   renderTemplate(parentElement, templates[template](eventData), ['']);
-      // });
-      // document.querySelector(
-      //   '#eventglo-current-page'
-      // ).innerHTML = `Page ${pager.page}`;
+      if (pager.totalSize > pager.pageSize) {
+        const element = document.querySelector('.eventglo-paginator');
+        if (element) element.style.display = 'flex';
+      }
     }
   }
 
