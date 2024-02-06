@@ -204,7 +204,7 @@ const EventGloEmbed = (() => {
    */
   async function getAllEventsByPublisherId(publisherId) {
     const response = await fetch(
-      `${API_URL}/GetAllEventByUserId?userId=${publisherId}&pagenumber=${pager.page}&pagesize=${pager.pageSize}&isPublished=true`,
+      `${API_URL}/GetAllEventByUserId/${publisherId}?userId=${publisherId}&pagenumber=${pager.page}&pagesize=${pager.pageSize}&isPublished=true`,
       {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
